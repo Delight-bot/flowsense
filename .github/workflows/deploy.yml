@@ -26,6 +26,11 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+        env:
+          # Injected from the repo secret named ANTHROPIC_API_KEY.
+          # Vite inlines VITE_* vars into the bundle at build time, so the
+          # chat works for everyone with no key-entry step.
+          VITE_ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
