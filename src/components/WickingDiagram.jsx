@@ -54,9 +54,9 @@ export default function WickingDiagram({ playing, onComplete }) {
 
         {/* WET / DRY zone divider */}
         <div className="relative mt-3 flex text-[10px] font-bold uppercase tracking-wide">
-          <div className="flex-[3] text-center text-blush">Wet Zone — Disposable</div>
+          <div className="flex-[3] text-center text-blush">Wet Zone · Disposable</div>
           <div className="mx-1 border-l-2 border-dashed border-muted/60" />
-          <div className="flex-[2] text-center text-gold">Dry Zone — Reusable</div>
+          <div className="flex-[2] text-center text-gold">Dry Zone · Reusable</div>
         </div>
       </div>
 

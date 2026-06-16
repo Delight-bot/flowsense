@@ -94,8 +94,8 @@ export default function Chat() {
         {chatHistory.length === 0 && (
           <div className="space-y-4">
             <div className="rounded-2xl bg-card p-4 text-sm leading-relaxed text-white/90 shadow-glow">
-              Hi! I'm OvaAI. I've read today's pad sync and I'm here to help you make sense of
-              your hormones. Ask me anything — or tap a starter below.
+              Hi! I'm OvaAI. I've read today's Flow sync and I'm here to help you make sense of
+              your hormones. Ask me anything, or tap a starter below.
             </div>
             <div className="flex flex-col gap-2">
               {starterPrompts.map((p) => (

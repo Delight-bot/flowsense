@@ -18,7 +18,7 @@ export default function Wicking() {
         The invisible microfluidic science, made visible.
       </p>
 
-      {/* Current strip status — animated cross section */}
+      {/* Current strip status, animated cross section */}
       <div className="mt-6 rounded-2xl bg-card p-4 shadow-glow">
         <h2 className="mb-3 text-sm font-bold uppercase tracking-wide text-muted">
           Current Strip Status

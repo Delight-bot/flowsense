@@ -1,4 +1,4 @@
-// Ambient gradient orb backgrounds — purely decorative.
+// Ambient gradient orb backgrounds, purely decorative.
 export default function Orbs() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">

@@ -1,5 +1,5 @@
 // Simulated hormone readings + supporting demo data for FlowSense.
-// No backend — all values hardcoded per the engineering spec.
+// No backend; all values hardcoded per the engineering spec.
 
 export const biomarkers = [
   {
@@ -109,11 +109,11 @@ export const wickingLog = [
   {
     time: '12:31 PM',
     label: 'Midday sync',
-    detail: 'Cortisol ↑ to 22.1 (flagged — stress marker elevated)',
+    detail: 'Cortisol ↑ to 22.1 (flagged: stress marker elevated)',
     flagged: true,
   },
   {
-    time: '—',
+    time: '',
     label: 'Next sync pending…',
     detail: '',
     flagged: false,
@@ -122,7 +122,7 @@ export const wickingLog = [
 ]
 
 export const aiInsight = {
-  text: "Your cortisol is 22% above your personal baseline today. This is your luteal phase — progesterone-driven cortisol sensitivity is normal, but this level suggests acute stress compounding. Consider: a 15-min walk before lunch, reducing caffeine this afternoon, and 7–8h sleep tonight to prevent tomorrow's hormone drop.",
+  text: "Your cortisol is 22% above your personal baseline today. This is your luteal phase, so progesterone-driven cortisol sensitivity is normal, but this level suggests acute stress compounding. Consider a 15-min walk before lunch, reducing caffeine this afternoon, and 7 to 8 hours of sleep tonight to prevent tomorrow's hormone drop.",
   source: 'OvaAI · Based on your 3-cycle hormone profile',
 }
 
@@ -134,7 +134,7 @@ export const stripZones = [
     status: 'Active',
     color: '#D4418E',
     detail:
-      'Nitrocellulose lateral flow membrane. Fluid pulled via capillary action — no pump needed. Pore size: 5μm average. Flow rate: ~2μL/min. Sealing: Silicone O-ring gasket (Shore 30A) pressed against pad channel by spring-loaded reader module (0.4N contact force).',
+      'Nitrocellulose lateral flow membrane. Fluid pulled via capillary action, no pump needed. Pore size: 5μm average. Flow rate: ~2μL/min. Sealing: Silicone O-ring gasket (Shore 30A) pressed against the Flow channel by a spring-loaded reader module (0.4N contact force).',
   },
   {
     id: 2,
@@ -143,7 +143,7 @@ export const stripZones = [
     status: 'Complete',
     color: '#F28AC4',
     detail:
-      'Particle Filter — 2–5μm semi-permeable membrane. Blocks: red blood cells (6–8μm), large proteins >50kDa. Passes: estradiol (MW 272 Da), progesterone (MW 314 Da), LH (MW 28,000 Da — via specialized antibody pre-filter), cortisol (MW 362 Da), glucose (MW 180 Da).',
+      'Particle Filter: 2–5μm semi-permeable membrane. Blocks red blood cells (6–8μm) and large proteins >50kDa. Passes estradiol (MW 272 Da), progesterone (MW 314 Da), LH (MW 28,000 Da, via specialized antibody pre-filter), cortisol (MW 362 Da), glucose (MW 180 Da).',
   },
   {
     id: 3,
@@ -161,7 +161,7 @@ export const stripZones = [
     status: 'Reading',
     color: '#9B2D8E',
     detail:
-      'Five immobilized capture antibody lines — one per biomarker. Color intensity inversely proportional to analyte concentration (competitive format: more hormone = lighter line). 5-channel LED array (470nm, 530nm, 560nm, 590nm, 625nm) illuminates each line. Photodiode measures reflectance.',
+      'Five immobilized capture antibody lines, one per biomarker. Color intensity inversely proportional to analyte concentration (competitive format: more hormone = lighter line). 5-channel LED array (470nm, 530nm, 560nm, 590nm, 625nm) illuminates each line. Photodiode measures reflectance.',
   },
   {
     id: 5,
@@ -178,8 +178,8 @@ export const readerSpecs = [
   ['MCU', 'ARM Cortex-M0+ @ 48MHz'],
   ['LED Array', '5× wavelength-matched LEDs (470–625nm)'],
   ['Photodiode', '5-channel silicon photodiode array'],
-  ['NFC', 'ISO 15693 @ 13.56MHz — 1-second data transfer'],
-  ['Battery', 'LiPo 80mAh — 30-day standby, 120 sync cycles/charge'],
+  ['NFC', 'ISO 15693 @ 13.56MHz · 1-second data transfer'],
+  ['Battery', 'LiPo 80mAh · 30-day standby, 120 sync cycles/charge'],
   ['Housing', 'Injection-molded ABS, IP54 rated'],
   ['BOM Cost', '$8.50 target'],
   ['Dimensions', '38mm × 12mm × 4mm'],
@@ -274,20 +274,20 @@ export const starterPrompts = [
   'What should I eat today for my cycle phase?',
 ]
 
-export const SYSTEM_PROMPT = `You are OvaAI, the hormone intelligence companion inside FlowSense — the world's first biosensor feminine pad platform. You speak like a brilliant endocrinologist who also happens to be the user's most trusted friend.
+export const SYSTEM_PROMPT = `You are OvaAI, the hormone intelligence companion inside FlowSense, the platform behind Flow, the world's first biosensor feminine pad. Flow monitors hormones live, syncing a reading whenever it collects a usable amount of fluid while being worn. You speak like a brilliant endocrinologist who also happens to be the user's most trusted friend.
 
-Current user data (simulated readings from today's pad sync):
+Current user data (simulated readings from today's Flow sync):
 - Estradiol (E2): 142 pg/mL (normal range: 100–400 pg/mL, luteal phase)
 - Progesterone (P4): 8.4 ng/mL (normal range: 5–20 ng/mL, luteal phase)
 - LH: 6.2 mIU/mL (normal range: 1–18 mIU/mL)
-- Cortisol: 18.6 nmol/L (ELEVATED — personal baseline: 14.2, up 22%)
+- Cortisol: 18.6 nmol/L (ELEVATED, personal baseline: 14.2, up 22%)
 - Glucose metabolite: 88 mg/dL (normal)
 - Cycle day: 22 of 28 (luteal phase)
 - Symptoms reported: cramps, bloating, fatigue, mood swings
 
 Sensor method: Hybrid optical reader + disposable electrochemical reagent strip.
 Readings from menstrual fluid via lateral flow microfluidic wicking membrane.
-Data collected passively — user did not need to do anything beyond wearing the pad.
+Data collected passively; the user did not need to do anything beyond wearing the Flow pad.
 
 Guidelines:
 - Be warm, specific, and actionable

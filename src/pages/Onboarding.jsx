@@ -170,7 +170,7 @@ export default function Onboarding() {
                     disabled={playing}
                     className="flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-rose to-orchid px-6 py-4 text-base font-bold text-white shadow-glow-mint transition hover:scale-[1.02] disabled:opacity-60"
                   >
-                    {playing ? 'Connecting…' : 'Connect My FlowSense'}
+                    {playing ? 'Connecting…' : 'Connect My Flow'}
                   </button>
                   <button
                     onClick={finish}

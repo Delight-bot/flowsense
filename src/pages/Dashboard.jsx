@@ -53,7 +53,7 @@ export default function Dashboard() {
           <>
             <span className="flex items-center gap-1.5 font-semibold text-success">
               <span className="h-2 w-2 animate-pulse rounded-full bg-success" />
-              FlowSense Pad™ — Connected
+              Flow · Live monitoring
             </span>
             <span className="text-muted">Last sync: 7:14 AM</span>
             <span className="text-muted">Reader battery: 94%</span>
@@ -130,7 +130,7 @@ export default function Dashboard() {
                 style={!e.pending ? { boxShadow: `0 0 8px ${e.flagged ? '#D4418E' : '#4ADE80'}` } : {}}
               />
               <div className="flex items-center gap-2 text-sm font-semibold">
-                {e.time !== '—' && <span className="text-blush">{e.time}</span>}
+                {e.time && <span className="text-blush">{e.time}</span>}
                 <span className={e.pending ? 'text-muted' : 'text-white'}>{e.label}</span>
               </div>
               {e.detail && (

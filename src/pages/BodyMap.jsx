@@ -102,9 +102,9 @@ export default function BodyMap() {
         </button>
         {noteOpen && (
           <p className="mt-3 text-sm leading-relaxed text-muted">
-            FlowSense detects these symptoms' root hormonal causes from menstrual fluid —
+            Flow detects these symptoms' root hormonal causes from menstrual fluid
             passively, using the same lateral flow wicking technology as rapid COVID tests.
-            The pad does the science. You get the answers.
+            Flow does the science. You get the answers.
           </p>
         )}
       </div>
@@ -139,7 +139,7 @@ export default function BodyMap() {
               <p className="mt-1 text-sm font-semibold text-gold">{zone.biomarker}</p>
             </div>
             <button
-              onClick={() => navigate(`/chat?q=${encodeURIComponent(`Tell me about my ${zone.symptom.toLowerCase()} — what's the hormone connection?`)}`)}
+              onClick={() => navigate(`/chat?q=${encodeURIComponent(`Tell me about my ${zone.symptom.toLowerCase()}: what's the hormone connection?`)}`)}
               className="mt-5 flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-rose to-orchid py-3.5 text-sm font-bold text-white shadow-glow-mint"
             >
               <MessageCircle size={16} /> Ask OvaAI about this

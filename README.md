@@ -1,4 +1,4 @@
-# FlowSense — Biosensor Hormone Intelligence
+# FlowSense · Biosensor Hormone Intelligence
 
 An investor/hackathon demo prototype of the FlowSense system: from inserting the
 sensor module into a pad, through the microfluidic wicking process, to a real

@@ -44,8 +44,10 @@ export default function Landing() {
             </span>
           </h1>
           <p className="mt-5 max-w-sm text-base text-muted">
-            FlowSense — the world's first biosensor feminine pad. Reads 5 hormones.
-            Delivers 3 therapeutics. Talks to your doctor.
+            Meet Flow, the world's first biosensor feminine pad. It monitors your
+            hormones live, syncing a fresh reading whenever it collects a usable
+            amount of fluid while you wear it. Reads 5 hormones. Delivers 3
+            therapeutics. Talks to your doctor.
           </p>
           <button
             onClick={() => navigate('/onboarding')}
