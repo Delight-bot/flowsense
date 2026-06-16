@@ -32,6 +32,8 @@ jobs:
           # chat works for everyone with no key-entry step.
           VITE_ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
       - uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
