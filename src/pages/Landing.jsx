@@ -131,9 +131,13 @@ export default function Landing() {
             <span className="text-muted">7:14 AM</span>
           </div>
 
-          {/* Pad image — 192 px wide, centered */}
-          <div className="w-48">
-            <PadVisual />
+          {/* Pad image */}
+          <div className="w-52">
+            <img
+              src="/pad.png"
+              alt="Flow Pad biosensor"
+              className="w-full object-contain drop-shadow-[0_0_28px_rgba(155,45,142,0.45)]"
+            />
           </div>
 
           {/* Live hormone readings grid */}

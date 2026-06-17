@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="public/pad-concept.svg" alt="FlowSense biosensor pad reads 5 hormones via NFC" width="220" />
+  <img src="public/pad.png" alt="FlowSense biosensor pad reads 5 hormones via NFC" width="280" />
 </p>
 
 <h1 align="center">FlowSense · Biosensor Hormone Intelligence</h1>
