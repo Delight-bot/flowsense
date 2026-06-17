@@ -15,9 +15,10 @@ export default {
         muted: '#C4A7E7',
       },
       boxShadow: {
-        glow: '0 0 24px rgba(155, 45, 142, 0.3)',
-        'glow-mint': '0 0 24px rgba(212, 65, 142, 0.35)',
-        'glow-gold': '0 0 24px rgba(245, 200, 66, 0.25)',
+        // Glows halved in intensity — still present on key elements, not every card
+        glow: '0 0 20px rgba(155, 45, 142, 0.14)',
+        'glow-mint': '0 0 20px rgba(212, 65, 142, 0.18)',
+        'glow-gold': '0 0 20px rgba(245, 200, 66, 0.12)',
       },
       borderRadius: {
         xl: '16px',
@@ -47,13 +48,23 @@ export default {
           '0%': { transform: 'translateY(100%)' },
           '100%': { transform: 'translateY(0)' },
         },
+        spin360Y: {
+          '0%':   { transform: 'perspective(800px) rotateY(0deg)' },
+          '100%': { transform: 'perspective(800px) rotateY(360deg)' },
+        },
+        pulseGlow: {
+          '0%, 100%': { opacity: '0.4', transform: 'scale(1)' },
+          '50%':       { opacity: '0.9', transform: 'scale(1.06)' },
+        },
       },
       animation: {
-        float: 'float 8s ease-in-out infinite',
-        floatAlt: 'floatAlt 10s ease-in-out infinite',
-        wick: 'wick 6s ease-in-out forwards',
-        fillUp: 'fillUp 3s ease-out forwards',
-        slideUp: 'slideUp 0.3s ease-out forwards',
+        float:       'float 8s ease-in-out infinite',
+        floatAlt:    'floatAlt 10s ease-in-out infinite',
+        wick:        'wick 6s ease-in-out forwards',
+        fillUp:      'fillUp 3s ease-out forwards',
+        slideUp:     'slideUp 0.3s ease-out forwards',
+        'spin-y':    'spin360Y 1.3s ease-in-out forwards',
+        'pulse-glow':'pulseGlow 1.6s ease-in-out infinite',
       },
     },
   },

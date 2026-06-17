@@ -77,7 +77,7 @@ export default function Chat() {
   }
 
   return (
-    <div className="flex h-[calc(100vh-6rem)] flex-col px-4 pt-6">
+    <div className="flex h-[calc(100vh-6rem)] flex-col px-4 pt-6 lg:h-full">
       {/* Header */}
       <div className="flex items-center gap-3 pb-4">
         <div className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-rose to-orchid shadow-glow-mint">

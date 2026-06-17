@@ -1,7 +1,8 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Droplets, Cpu, Brain, ArrowRight, ChevronDown, FlaskConical, Users, Database } from 'lucide-react'
 import Orbs from '../components/Orbs.jsx'
+import IntroAnimation from '../components/IntroAnimation.jsx'
 
 const researchCards = [
   {
@@ -54,9 +55,18 @@ const layers = [
 export default function Landing() {
   const navigate = useNavigate()
   const engRef = useRef(null)
+  // Show intro once per browser session; re-plays if you open a new tab
+  const [showIntro, setShowIntro] = useState(() => !sessionStorage.getItem('fs_intro_shown'))
+
+  const handleIntroDone = () => {
+    sessionStorage.setItem('fs_intro_shown', '1')
+    setShowIntro(false)
+  }
 
   return (
     <div className="relative">
+      {showIntro && <IntroAnimation onDone={handleIntroDone} />}
+
       {/* Hero */}
       <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 text-center">
         <Orbs />
