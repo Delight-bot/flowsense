@@ -43,7 +43,7 @@ export default function Dashboard() {
       <div className="rounded-2xl bg-gradient-to-br from-card to-cardAlt p-5 shadow-glow">
         <h1 className="text-xl font-bold">Good morning, {name}.</h1>
         <p className="mt-1 text-sm text-muted">
-          Day 3 of your cycle. Luteal phase ends in 5 days.
+          Day 22 of your cycle. Luteal phase ends in 6 days.
         </p>
       </div>
 
