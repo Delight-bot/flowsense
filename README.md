@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <a href="https://delignyanhete2023.github.io/thrive-hackathon/">Live Demo</a>
+  <a href="https://delight-bot.github.io/flowsense/">Live Demo</a>
 </p>
 
 ---
