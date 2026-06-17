@@ -24,8 +24,8 @@ export default function Wicking() {
           Why Menstrual Fluid?
         </p>
         <p className="text-sm leading-relaxed text-white">
-          Menstrual fluid is shed directly from the endometrium — the most hormonally active
-          tissue in the body. Hormone concentrations are up to 10× higher than in venous blood,
+          Menstrual fluid is shed directly from the endometrium, the most hormonally active
+          tissue in the body. Hormone concentrations are up to 10x higher than in venous blood,
           and the sample is collected passively while the pad is worn. Going to the source means
           earlier signals, richer data, and real-world research at population scale.
         </p>

@@ -196,7 +196,7 @@ export default function Dashboard() {
           <Database size={16} className="text-blush" /> Research Network
         </div>
         <p className="text-sm leading-relaxed text-white/90">
-          Your anonymized cycle data contributes to the FlowSense Research Network — building the
+          Your anonymized cycle data contributes to the FlowSense Research Network, building the
           world's first longitudinal menstrual hormone dataset. Each cycle you contribute helps
           detect PCOS, endometriosis, and hormonal imbalance patterns earlier for every woman on the platform.
         </p>

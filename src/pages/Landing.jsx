@@ -14,39 +14,93 @@ const shortName = {
   glucose:  'Glucose',
 }
 
-// ── Pad placeholder — swap for a real <img> when the photo is ready ───────
-// Drop your image in /public/pad.jpg and replace this whole component with:
-//   <img src="/pad.jpg" alt="Flow Pad" className="w-full object-contain" />
+// Pad visual. To use a real photo once you have one:
+// 1. Drop the image in /public/pad.jpg
+// 2. Replace <PadVisual /> with:
+//    <img src="/pad.jpg" alt="Flow Pad" className="w-full object-contain" />
 function PadVisual() {
+  const ledCols = [37, 49, 60, 71, 83]
   return (
-    <svg viewBox="0 0 120 220" className="w-full drop-shadow-[0_0_24px_rgba(155,45,142,0.35)]" fill="none">
-      {/* Body */}
-      <rect x="16" y="6"   width="88" height="208" rx="38" fill="white" fillOpacity="0.93" />
-      {/* Wings */}
-      <rect x="0"   y="82" width="18" height="40"  rx="7"  fill="white" fillOpacity="0.7"  />
-      <rect x="102" y="82" width="18" height="40"  rx="7"  fill="white" fillOpacity="0.7"  />
-      {/* Inner zone */}
-      <rect x="30" y="24" width="60" height="148" rx="20" fill="#F0EAF8" />
-      {/* Center guide line */}
-      <line x1="60" y1="32" x2="60" y2="158" stroke="#D8C4F0" strokeWidth="2" strokeDasharray="5 5" />
-      {/* Sensor chip */}
-      <rect x="24" y="156" width="72" height="44" rx="12" fill="#9B2D8E" />
-      <rect x="32" y="164" width="56" height="28" rx="7"  fill="#7A1E7A" />
-      <line x1="44" y1="164" x2="44" y2="192" stroke="#5A125A" strokeWidth="1.2" />
-      <line x1="56" y1="164" x2="56" y2="192" stroke="#5A125A" strokeWidth="1.2" />
-      <line x1="68" y1="164" x2="68" y2="192" stroke="#5A125A" strokeWidth="1.2" />
-      <line x1="76" y1="164" x2="76" y2="192" stroke="#5A125A" strokeWidth="1.2" />
-      <text x="60" y="182" textAnchor="middle" fontSize="9" fill="#F28AC4" fontWeight="700">NFC</text>
+    <svg viewBox="0 0 120 224" className="w-full drop-shadow-[0_0_28px_rgba(155,45,142,0.4)]" fill="none">
+
+      {/* Pad body and wings */}
+      <rect x="16" y="6" width="88" height="212" rx="38" fill="white" fillOpacity="0.94" />
+      <rect x="0"   y="83" width="17" height="38" rx="7" fill="white" fillOpacity="0.72" />
+      <rect x="103" y="83" width="17" height="38" rx="7" fill="white" fillOpacity="0.72" />
+
+      {/* Inner absorbent zone */}
+      <rect x="28" y="22" width="64" height="128" rx="18" fill="#EDE4F8" />
+
       {/* Brand */}
-      <text x="60" y="96" textAnchor="middle" fontSize="8.5" fill="#9B2D8E" fontWeight="700" letterSpacing="0.8">FlowSense™</text>
-      {/* Electrode dots */}
-      <circle cx="42" cy="120" r="2.5" fill="#C4A7E7" fillOpacity="0.5" />
-      <circle cx="60" cy="120" r="2.5" fill="#C4A7E7" fillOpacity="0.5" />
-      <circle cx="78" cy="120" r="2.5" fill="#C4A7E7" fillOpacity="0.5" />
-      {/* NFC rings below chip */}
-      <circle cx="60" cy="212" r="11" stroke="#9B2D8E" strokeWidth="1"   strokeOpacity="0.4" fill="none" />
-      <circle cx="60" cy="212" r="19" stroke="#9B2D8E" strokeWidth="0.8" strokeOpacity="0.22" fill="none" />
-      <circle cx="60" cy="212" r="27" stroke="#9B2D8E" strokeWidth="0.5" strokeOpacity="0.12" fill="none" />
+      <text x="60" y="36" textAnchor="middle" fontSize="7" fill="#9B2D8E" fontWeight="700" letterSpacing="1">FlowSense™</text>
+
+      {/* Sensor electrode array: 5 columns x 2 rows */}
+      {ledCols.map((cx) => (
+        <g key={cx}>
+          <circle cx={cx} cy="52" r="2.2" fill="#9B2D8E" fillOpacity="0.2" />
+          <circle cx={cx} cy="66" r="2.2" fill="#9B2D8E" fillOpacity="0.2" />
+        </g>
+      ))}
+
+      {/* ECG waveform (active read line) */}
+      <path
+        d="M 30 98 L 44 98 L 48 83 L 53 113 L 58 83 L 62 98 L 90 98"
+        stroke="#9B2D8E" strokeWidth="1.6" strokeOpacity="0.35"
+        strokeLinecap="round" strokeLinejoin="round"
+      />
+
+      {/* Circuit traces from electrode array to chip */}
+      {ledCols.map((x) => (
+        <line key={x} x1={x} y1="74" x2={x} y2="150"
+          stroke="#9B2D8E" strokeWidth="0.7" strokeOpacity="0.15" />
+      ))}
+
+      {/* PCB chip substrate */}
+      <rect x="20" y="150" width="80" height="66" rx="14" fill="#0D0820" />
+      <rect x="20" y="150" width="80" height="66" rx="14"
+        stroke="#9B2D8E" strokeWidth="0.8" strokeOpacity="0.55" />
+
+      {/* PCB rails */}
+      <line x1="24" y1="160" x2="96" y2="160" stroke="#9B2D8E" strokeWidth="0.5" strokeOpacity="0.28" />
+      <line x1="24" y1="206" x2="96" y2="206" stroke="#9B2D8E" strokeWidth="0.5" strokeOpacity="0.28" />
+
+      {/* IC package */}
+      <rect x="29" y="162" width="62" height="26" rx="5" fill="#1A0A2E" />
+      <rect x="29" y="162" width="62" height="26" rx="5"
+        stroke="#9B2D8E" strokeWidth="0.5" strokeOpacity="0.35" />
+
+      {/* 5 hormone LEDs: glow halo then dot */}
+      {[
+        { cx: 39,  color: '#4ADE80' },
+        { cx: 50,  color: '#F5C842' },
+        { cx: 60,  color: '#F28AC4' },
+        { cx: 70,  color: '#D4418E' },
+        { cx: 81,  color: '#9B2D8E' },
+      ].map(({ cx, color }) => (
+        <g key={cx}>
+          <circle cx={cx} cy="175" r="5.5" fill={color} fillOpacity="0.18" />
+          <circle cx={cx} cy="175" r="3"   fill={color} />
+        </g>
+      ))}
+
+      {/* Hormone labels */}
+      {[
+        { cx: 39, label: 'E2'  },
+        { cx: 50, label: 'P4'  },
+        { cx: 60, label: 'LH'  },
+        { cx: 70, label: 'COR' },
+        { cx: 81, label: 'GLU' },
+      ].map(({ cx, label }) => (
+        <text key={cx} x={cx} y="184" textAnchor="middle" fontSize="4.5" fill="#C4A7E7">{label}</text>
+      ))}
+
+      {/* NFC label (left of chip) */}
+      <text x="43" y="198" textAnchor="middle" fontSize="5" fill="#C4A7E7" letterSpacing="0.3">NFC · 13.56 MHz</text>
+
+      {/* Active status dot (right of chip) */}
+      <circle cx="86" cy="196" r="4.5" fill="#4ADE80" fillOpacity="0.18" />
+      <circle cx="86" cy="196" r="2.5" fill="#4ADE80" />
+      <text    x="86" y="207" textAnchor="middle" fontSize="4" fill="#4ADE80" letterSpacing="0.4">LIVE</text>
     </svg>
   )
 }
@@ -111,7 +165,7 @@ export default function Landing() {
               Now it works for her.
             </h1>
             <p className="mt-3 text-sm leading-relaxed text-muted">
-              Flow reads 5 hormones passively from menstrual fluid — no blood draw,
+              Flow reads 5 hormones passively from menstrual fluid. No blood draw,
               no appointment, no extra steps.
             </p>
           </div>
@@ -155,8 +209,8 @@ export default function Landing() {
             Why the pad works
           </p>
           <p className="text-sm leading-relaxed text-white">
-            Menstrual fluid is shed directly from the endometrium — hormone concentrations are
-            up to 10× higher than in venous blood. Flow collects this passively while you wear it.
+            Menstrual fluid is shed directly from the endometrium. Hormone concentrations are
+            up to 10x higher than in venous blood. Flow collects this passively while you wear it.
             Going to the source means earlier signals and richer data than any blood draw.
           </p>
         </div>
@@ -167,7 +221,7 @@ export default function Landing() {
             The bigger picture
           </p>
           <p className="text-sm leading-relaxed text-white">
-            200 million pads are used every month — every one is a hormone panel going in the trash.
+            200 million pads are used every month. Every one is a hormone panel going in the trash.
             With opt-in anonymous data from our network, Flow helps detect PCOS and endometriosis
             patterns months before symptoms escalate to a clinic visit.
           </p>

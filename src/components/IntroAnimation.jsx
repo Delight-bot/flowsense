@@ -143,7 +143,7 @@ export default function IntroAnimation({ onDone }) {
   const captions = [
     '',
     'Meet the Flow Pad™',
-    'Reading 5 hormones — passively.',
+    'Reading 5 hormones. Passively.',
     'Syncing via NFC…',
     'Connected. Your hormones, live.',
     '',
