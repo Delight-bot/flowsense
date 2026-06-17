@@ -4,16 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { ArrowRight, ChevronDown } from 'lucide-react'
 import Orbs from '../components/Orbs.jsx'
 import IntroAnimation from '../components/IntroAnimation.jsx'
-import { biomarkers, statusColor, aiInsight } from '../data/biomarkers.js'
-
-// Short display names for the compact hormone grid
-const shortName = {
-  e2:       'Estradiol',
-  p4:       'Progest.',
-  lh:       'LH',
-  cortisol: 'Cortisol',
-  glucose:  'Glucose',
-}
+import { aiInsight } from '../data/biomarkers.js'
 
 // Pad visual. To use a real photo once you have one:
 // 1. Drop the image in /public/pad.jpg
@@ -139,27 +130,6 @@ export default function Landing() {
               alt="Flow Pad biosensor"
               className="w-full object-contain drop-shadow-[0_0_28px_rgba(155,45,142,0.45)]"
             />
-          </div>
-
-          {/* Live hormone readings grid */}
-          <div className="w-full rounded-2xl bg-card p-3">
-            <p className="mb-2.5 text-[10px] uppercase tracking-widest text-muted">
-              Detected this sync
-            </p>
-            <div className="grid grid-cols-5 gap-1">
-              {biomarkers.map((b) => (
-                <div key={b.key} className="flex flex-col items-center gap-1 rounded-xl bg-bg/70 py-2.5">
-                  <span className="px-0.5 text-center text-[8px] leading-tight text-muted">
-                    {shortName[b.key]}
-                  </span>
-                  <span className="text-sm font-bold leading-none text-gold">{b.value}</span>
-                  <span
-                    className="h-1.5 w-1.5 rounded-full"
-                    style={{ backgroundColor: statusColor[b.status] }}
-                  />
-                </div>
-              ))}
-            </div>
           </div>
 
           {/* Headline */}
