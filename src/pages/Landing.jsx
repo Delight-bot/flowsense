@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react'
+import padImg from '../assets/pad.png'
 import { useNavigate } from 'react-router-dom'
 import { ArrowRight, ChevronDown } from 'lucide-react'
 import Orbs from '../components/Orbs.jsx'
@@ -131,9 +132,13 @@ export default function Landing() {
             <span className="text-muted">7:14 AM</span>
           </div>
 
-          {/* Pad visual */}
-          <div className="w-48">
-            <PadVisual />
+          {/* Pad image */}
+          <div className="w-52">
+            <img
+              src={padImg}
+              alt="Flow Pad biosensor"
+              className="w-full object-contain drop-shadow-[0_0_28px_rgba(155,45,142,0.45)]"
+            />
           </div>
 
           {/* Live hormone readings grid */}
