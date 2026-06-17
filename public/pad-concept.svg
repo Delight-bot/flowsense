@@ -1,0 +1,84 @@
+<svg viewBox="0 0 160 280" xmlns="http://www.w3.org/2000/svg" fill="none">
+
+  <!-- Dark background so it reads on GitHub's white page -->
+  <rect width="160" height="280" rx="24" fill="#1A0A2E"/>
+
+  <!-- Pad body -->
+  <rect x="36" y="14" width="88" height="212" rx="38" fill="white" fill-opacity="0.94"/>
+  <!-- Wings -->
+  <rect x="19"  y="97"  width="19" height="38" rx="7" fill="white" fill-opacity="0.72"/>
+  <rect x="122" y="97"  width="19" height="38" rx="7" fill="white" fill-opacity="0.72"/>
+
+  <!-- Inner absorbent zone -->
+  <rect x="48" y="30" width="64" height="128" rx="18" fill="#EDE4F8"/>
+
+  <!-- Brand -->
+  <text x="80" y="46" text-anchor="middle" font-size="7" fill="#9B2D8E" font-weight="700" letter-spacing="1" font-family="system-ui, sans-serif">FlowSense&#x2122;</text>
+
+  <!-- Sensor electrode array 5x2 -->
+  <circle cx="57" cy="62"  r="2.2" fill="#9B2D8E" fill-opacity="0.25"/>
+  <circle cx="68" cy="62"  r="2.2" fill="#9B2D8E" fill-opacity="0.25"/>
+  <circle cx="80" cy="62"  r="2.2" fill="#9B2D8E" fill-opacity="0.25"/>
+  <circle cx="92" cy="62"  r="2.2" fill="#9B2D8E" fill-opacity="0.25"/>
+  <circle cx="103" cy="62" r="2.2" fill="#9B2D8E" fill-opacity="0.25"/>
+  <circle cx="57" cy="76"  r="2.2" fill="#9B2D8E" fill-opacity="0.25"/>
+  <circle cx="68" cy="76"  r="2.2" fill="#9B2D8E" fill-opacity="0.25"/>
+  <circle cx="80" cy="76"  r="2.2" fill="#9B2D8E" fill-opacity="0.25"/>
+  <circle cx="92" cy="76"  r="2.2" fill="#9B2D8E" fill-opacity="0.25"/>
+  <circle cx="103" cy="76" r="2.2" fill="#9B2D8E" fill-opacity="0.25"/>
+
+  <!-- ECG waveform -->
+  <path d="M 50 108 L 62 108 L 66 93 L 72 123 L 77 93 L 82 108 L 110 108"
+    stroke="#9B2D8E" stroke-width="1.8" stroke-opacity="0.4"
+    stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Circuit traces to chip -->
+  <line x1="57"  y1="84" x2="57"  y2="158" stroke="#9B2D8E" stroke-width="0.7" stroke-opacity="0.15"/>
+  <line x1="68"  y1="84" x2="68"  y2="158" stroke="#9B2D8E" stroke-width="0.7" stroke-opacity="0.15"/>
+  <line x1="80"  y1="84" x2="80"  y2="158" stroke="#9B2D8E" stroke-width="0.7" stroke-opacity="0.15"/>
+  <line x1="92"  y1="84" x2="92"  y2="158" stroke="#9B2D8E" stroke-width="0.7" stroke-opacity="0.15"/>
+  <line x1="103" y1="84" x2="103" y2="158" stroke="#9B2D8E" stroke-width="0.7" stroke-opacity="0.15"/>
+
+  <!-- PCB chip substrate -->
+  <rect x="36" y="158" width="88" height="64" rx="14" fill="#0D0820"/>
+  <rect x="36" y="158" width="88" height="64" rx="14" stroke="#9B2D8E" stroke-width="0.9" stroke-opacity="0.55"/>
+
+  <!-- PCB rails -->
+  <line x1="40" y1="168" x2="120" y2="168" stroke="#9B2D8E" stroke-width="0.5" stroke-opacity="0.28"/>
+  <line x1="40" y1="212" x2="120" y2="212" stroke="#9B2D8E" stroke-width="0.5" stroke-opacity="0.28"/>
+
+  <!-- IC package -->
+  <rect x="44" y="170" width="72" height="26" rx="5" fill="#1A0A2E"/>
+  <rect x="44" y="170" width="72" height="26" rx="5" stroke="#9B2D8E" stroke-width="0.5" stroke-opacity="0.4"/>
+
+  <!-- 5 hormone LEDs: glow halos -->
+  <circle cx="54"  cy="183" r="6" fill="#4ADE80" fill-opacity="0.2"/>
+  <circle cx="66"  cy="183" r="6" fill="#F5C842" fill-opacity="0.2"/>
+  <circle cx="80"  cy="183" r="6" fill="#F28AC4" fill-opacity="0.2"/>
+  <circle cx="94"  cy="183" r="6" fill="#D4418E" fill-opacity="0.2"/>
+  <circle cx="106" cy="183" r="6" fill="#9B2D8E" fill-opacity="0.2"/>
+  <!-- LED dots -->
+  <circle cx="54"  cy="183" r="3.2" fill="#4ADE80"/>
+  <circle cx="66"  cy="183" r="3.2" fill="#F5C842"/>
+  <circle cx="80"  cy="183" r="3.2" fill="#F28AC4"/>
+  <circle cx="94"  cy="183" r="3.2" fill="#D4418E"/>
+  <circle cx="106" cy="183" r="3.2" fill="#9B2D8E"/>
+
+  <!-- Hormone labels -->
+  <text x="54"  y="194" text-anchor="middle" font-size="5" fill="#C4A7E7" font-family="system-ui, sans-serif">E2</text>
+  <text x="66"  y="194" text-anchor="middle" font-size="5" fill="#C4A7E7" font-family="system-ui, sans-serif">P4</text>
+  <text x="80"  y="194" text-anchor="middle" font-size="5" fill="#C4A7E7" font-family="system-ui, sans-serif">LH</text>
+  <text x="94"  y="194" text-anchor="middle" font-size="5" fill="#C4A7E7" font-family="system-ui, sans-serif">COR</text>
+  <text x="106" y="194" text-anchor="middle" font-size="5" fill="#C4A7E7" font-family="system-ui, sans-serif">GLU</text>
+
+  <!-- NFC label -->
+  <text x="62" y="207" text-anchor="middle" font-size="5.5" fill="#C4A7E7" letter-spacing="0.3" font-family="system-ui, sans-serif">NFC · 13.56 MHz</text>
+
+  <!-- Active status dot -->
+  <circle cx="108" cy="205" r="5"   fill="#4ADE80" fill-opacity="0.2"/>
+  <circle cx="108" cy="205" r="2.8" fill="#4ADE80"/>
+
+  <!-- Tagline below the pad -->
+  <text x="80" y="248" text-anchor="middle" font-size="8.5" fill="white" font-weight="700" font-family="system-ui, sans-serif">5 hormones. Live.</text>
+  <text x="80" y="262" text-anchor="middle" font-size="6.5" fill="#C4A7E7" font-family="system-ui, sans-serif">No blood draw. No appointment.</text>
+</svg>
