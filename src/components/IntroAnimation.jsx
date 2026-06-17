@@ -17,9 +17,9 @@ const ANIM_CSS = `
     88%  { opacity: 1; }
     100% { left: calc(100% - 10px);   opacity: 0; }
   }
-  .fs-drop-fall { animation: fs-drop-fall 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
-  .fs-spread    { animation: fs-spread 1.5s ease-out forwards; }
-  .fs-ping      { animation: fs-ping-travel 0.95s ease-in-out infinite; }
+  .fs-drop-fall { animation: fs-drop-fall 1s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+  .fs-spread    { animation: fs-spread 2.2s ease-out forwards; }
+  .fs-ping      { animation: fs-ping-travel 1.3s ease-in-out infinite; }
 `
 
 function PadGraphic({ glowing }) {
@@ -113,12 +113,12 @@ export default function IntroAnimation({ onDone }) {
 
   useEffect(() => {
     const schedule = [
-      [400,  1],
-      [1100, 2],
-      [1950, 3],
-      [3200, 4],
-      [4050, 5],
-      [5400, 6],
+      [700,  1],   // pad fades in
+      [1900, 2],   // drop falls
+      [3100, 3],   // pad glows + spread rings
+      [5200, 4],   // NFC signals + phone slides in
+      [6500, 5],   // phone lights up
+      [8500, 6],   // fade out
     ]
     const timers = schedule.map(([ms, p]) => setTimeout(() => setPhase(p), ms))
     return () => timers.forEach(clearTimeout)
