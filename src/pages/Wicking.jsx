@@ -20,10 +20,10 @@ export default function Wicking() {
 
       {/* Why menstrual fluid banner */}
       <div className="mt-4 rounded-2xl bg-gradient-to-r from-orchid/20 to-rose/10 p-4 ring-1 ring-orchid/30">
-        <p className="mb-1.5 text-xs font-bold uppercase tracking-wide text-blush">
+        <p className="mb-1.5 text-xs font-semibold uppercase tracking-widest text-muted">
           Why Menstrual Fluid?
         </p>
-        <p className="text-sm leading-relaxed text-white/90">
+        <p className="text-sm leading-relaxed text-white">
           Menstrual fluid is shed directly from the endometrium — the most hormonally active
           tissue in the body. Hormone concentrations are up to 10× higher than in venous blood,
           and the sample is collected passively while the pad is worn. Going to the source means
@@ -137,8 +137,8 @@ export default function Wicking() {
 
       {/* Reader module specs */}
       <div className="mt-6 rounded-2xl bg-gradient-to-br from-card to-cardAlt p-5 shadow-glow">
-        <div className="mb-4 flex items-center gap-2 text-sm font-bold text-blush">
-          <Cpu size={16} /> Reader Module Specs
+        <div className="mb-4 flex items-center gap-2 text-sm font-bold text-white">
+          <Cpu size={16} className="text-muted" /> Reader Module Specs
         </div>
         <div className="divide-y divide-muted/15">
           {readerSpecs.map(([k, v]) => (

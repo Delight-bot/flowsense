@@ -140,7 +140,7 @@ export default function Dashboard() {
                 style={!e.pending ? { boxShadow: `0 0 8px ${e.flagged ? '#D4418E' : '#4ADE80'}` } : {}}
               />
               <div className="flex items-center gap-2 text-sm font-semibold">
-                {e.time && <span className="text-blush">{e.time}</span>}
+                {e.time && <span className="text-muted">{e.time}</span>}
                 <span className={e.pending ? 'text-muted' : 'text-white'}>{e.label}</span>
               </div>
               {e.detail && (
@@ -155,8 +155,8 @@ export default function Dashboard() {
 
       {/* AI insight */}
       <div className="mt-6 rounded-2xl bg-card p-5 shadow-glow-gold ring-1 ring-gold/40">
-        <div className="mb-2 flex items-center gap-2 text-sm font-bold text-gold">
-          <Sparkles size={16} /> AI Insight
+        <div className="mb-2 flex items-center gap-2 text-sm font-bold text-white">
+          <Sparkles size={16} className="text-gold" /> AI Insight
         </div>
         <p className="text-sm leading-relaxed text-white/90">{aiInsight.text}</p>
         <p className="mt-3 text-xs text-muted">{aiInsight.source}</p>
@@ -192,8 +192,8 @@ export default function Dashboard() {
 
       {/* Research Network card */}
       <div className="mt-6 mb-8 rounded-2xl bg-gradient-to-br from-orchid/20 to-card p-5 ring-1 ring-orchid/30">
-        <div className="mb-2 flex items-center gap-2 text-sm font-bold text-blush">
-          <Database size={16} /> Research Network
+        <div className="mb-2 flex items-center gap-2 text-sm font-bold text-white">
+          <Database size={16} className="text-blush" /> Research Network
         </div>
         <p className="text-sm leading-relaxed text-white/90">
           Your anonymized cycle data contributes to the FlowSense Research Network — building the

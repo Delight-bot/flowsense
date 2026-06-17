@@ -1,61 +1,59 @@
 import { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Droplets, Cpu, Brain, ArrowRight, ChevronDown, FlaskConical, Users, Database } from 'lucide-react'
+import { ArrowRight, ChevronDown } from 'lucide-react'
 import Orbs from '../components/Orbs.jsx'
 import IntroAnimation from '../components/IntroAnimation.jsx'
+import { biomarkers, statusColor, aiInsight } from '../data/biomarkers.js'
 
-const researchCards = [
-  {
-    Icon: FlaskConical,
-    title: 'Richer than a blood draw',
-    body: 'Menstrual fluid is shed directly from the endometrium — the most hormonally active tissue in the body. Biomarker concentrations are up to 10× higher than venous blood, giving us signals no arm-draw can match.',
-    color: '#F28AC4',
-    stat: '10×',
-    statLabel: 'richer in local biomarkers than serum',
-  },
-  {
-    Icon: Users,
-    title: 'Collection at population scale',
-    body: '200 million women use menstrual pads every month. Flow turns that existing behaviour into the world\'s largest passive hormone monitoring network — no extra steps, no new habits, no barriers.',
-    color: '#9B2D8E',
-    stat: '200M',
-    statLabel: 'monthly collection opportunities',
-  },
-  {
-    Icon: Database,
-    title: 'Flagging disease years earlier',
-    body: 'Endometriosis takes 7–10 years to diagnose. PCOS is missed for an average of 2 years. Cycle-by-cycle hormone tracking from the source surfaces patterns months before symptoms force a clinic visit.',
-    color: '#F5C842',
-    stat: '7–10y',
-    statLabel: 'average endometriosis diagnosis delay — today',
-  },
-]
+// Short display names for the compact hormone grid
+const shortName = {
+  e2:       'Estradiol',
+  p4:       'Progest.',
+  lh:       'LH',
+  cortisol: 'Cortisol',
+  glucose:  'Glucose',
+}
 
-const layers = [
-  {
-    Icon: Droplets,
-    title: 'Wicking Membrane',
-    body: 'Capillary action moves fluid from pad to sensor. No pump. No power. Same tech as COVID tests.',
-    color: '#F28AC4',
-  },
-  {
-    Icon: Cpu,
-    title: 'Hybrid Sensor',
-    body: 'Disposable electrochemical strip performs chemistry. Reusable optical reader measures color change. Electronics never touch fluid.',
-    color: '#9B2D8E',
-  },
-  {
-    Icon: Brain,
-    title: 'AI Engine',
-    body: '5 hormone readings. 3 cycles of data. PMOS and endometriosis risk scored before your next period.',
-    color: '#F5C842',
-  },
-]
+// ── Pad placeholder — swap for a real <img> when the photo is ready ───────
+// Drop your image in /public/pad.jpg and replace this whole component with:
+//   <img src="/pad.jpg" alt="Flow Pad" className="w-full object-contain" />
+function PadVisual() {
+  return (
+    <svg viewBox="0 0 120 220" className="w-full drop-shadow-[0_0_24px_rgba(155,45,142,0.35)]" fill="none">
+      {/* Body */}
+      <rect x="16" y="6"   width="88" height="208" rx="38" fill="white" fillOpacity="0.93" />
+      {/* Wings */}
+      <rect x="0"   y="82" width="18" height="40"  rx="7"  fill="white" fillOpacity="0.7"  />
+      <rect x="102" y="82" width="18" height="40"  rx="7"  fill="white" fillOpacity="0.7"  />
+      {/* Inner zone */}
+      <rect x="30" y="24" width="60" height="148" rx="20" fill="#F0EAF8" />
+      {/* Center guide line */}
+      <line x1="60" y1="32" x2="60" y2="158" stroke="#D8C4F0" strokeWidth="2" strokeDasharray="5 5" />
+      {/* Sensor chip */}
+      <rect x="24" y="156" width="72" height="44" rx="12" fill="#9B2D8E" />
+      <rect x="32" y="164" width="56" height="28" rx="7"  fill="#7A1E7A" />
+      <line x1="44" y1="164" x2="44" y2="192" stroke="#5A125A" strokeWidth="1.2" />
+      <line x1="56" y1="164" x2="56" y2="192" stroke="#5A125A" strokeWidth="1.2" />
+      <line x1="68" y1="164" x2="68" y2="192" stroke="#5A125A" strokeWidth="1.2" />
+      <line x1="76" y1="164" x2="76" y2="192" stroke="#5A125A" strokeWidth="1.2" />
+      <text x="60" y="182" textAnchor="middle" fontSize="9" fill="#F28AC4" fontWeight="700">NFC</text>
+      {/* Brand */}
+      <text x="60" y="96" textAnchor="middle" fontSize="8.5" fill="#9B2D8E" fontWeight="700" letterSpacing="0.8">FlowSense™</text>
+      {/* Electrode dots */}
+      <circle cx="42" cy="120" r="2.5" fill="#C4A7E7" fillOpacity="0.5" />
+      <circle cx="60" cy="120" r="2.5" fill="#C4A7E7" fillOpacity="0.5" />
+      <circle cx="78" cy="120" r="2.5" fill="#C4A7E7" fillOpacity="0.5" />
+      {/* NFC rings below chip */}
+      <circle cx="60" cy="212" r="11" stroke="#9B2D8E" strokeWidth="1"   strokeOpacity="0.4" fill="none" />
+      <circle cx="60" cy="212" r="19" stroke="#9B2D8E" strokeWidth="0.8" strokeOpacity="0.22" fill="none" />
+      <circle cx="60" cy="212" r="27" stroke="#9B2D8E" strokeWidth="0.5" strokeOpacity="0.12" fill="none" />
+    </svg>
+  )
+}
 
 export default function Landing() {
-  const navigate = useNavigate()
-  const engRef = useRef(null)
-  // Show intro once per browser session; re-plays if you open a new tab
+  const navigate   = useNavigate()
+  const insightRef = useRef(null)
   const [showIntro, setShowIntro] = useState(() => !sessionStorage.getItem('fs_intro_shown'))
 
   const handleIntroDone = () => {
@@ -67,129 +65,117 @@ export default function Landing() {
     <div className="relative">
       {showIntro && <IntroAnimation onDone={handleIntroDone} />}
 
-      {/* Hero */}
-      <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 text-center">
+      {/* ── Screen 1: Pad · Connection · Live Readings ───────────────── */}
+      <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-5 pb-10 pt-6 text-center">
         <Orbs />
-        <div className="relative z-10 flex flex-col items-center">
-          <span className="mb-6 rounded-full bg-card/70 px-4 py-1.5 text-xs font-semibold tracking-wide text-blush shadow-glow">
-            FlowSense™ · Biosensor Platform
-          </span>
-          <h1 className="max-w-md text-4xl font-bold leading-tight">
-            She already wears it.{' '}
-            <span className="bg-gradient-to-r from-blush via-rose to-orchid bg-clip-text text-transparent">
+        <div className="relative z-10 flex w-full max-w-xs flex-col items-center gap-5">
+
+          {/* Connection status */}
+          <div className="flex items-center gap-2 rounded-full bg-card px-4 py-2 text-xs">
+            <span className="h-2 w-2 animate-pulse rounded-full bg-success" />
+            <span className="font-medium text-white">Flow Pad™ · NFC Active</span>
+            <span className="text-muted">7:14 AM</span>
+          </div>
+
+          {/* Pad image — 192 px wide, centered */}
+          <div className="w-48">
+            <PadVisual />
+          </div>
+
+          {/* Live hormone readings grid */}
+          <div className="w-full rounded-2xl bg-card p-3">
+            <p className="mb-2.5 text-[10px] uppercase tracking-widest text-muted">
+              Detected this sync
+            </p>
+            <div className="grid grid-cols-5 gap-1">
+              {biomarkers.map((b) => (
+                <div key={b.key} className="flex flex-col items-center gap-1 rounded-xl bg-bg/70 py-2.5">
+                  <span className="px-0.5 text-center text-[8px] leading-tight text-muted">
+                    {shortName[b.key]}
+                  </span>
+                  <span className="text-sm font-bold leading-none text-gold">{b.value}</span>
+                  <span
+                    className="h-1.5 w-1.5 rounded-full"
+                    style={{ backgroundColor: statusColor[b.status] }}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Headline */}
+          <div>
+            <h1 className="text-3xl font-bold leading-tight text-white">
+              She already wears it.
+              <br />
               Now it works for her.
-            </span>
-          </h1>
-          <p className="mt-5 max-w-sm text-base text-muted">
-            Meet Flow, the world's first biosensor feminine pad. It monitors your
-            hormones live, syncing a fresh reading whenever it collects a usable
-            amount of fluid while you wear it. Reads 5 hormones. Delivers 3
-            therapeutics. Talks to your doctor.
-          </p>
+            </h1>
+            <p className="mt-3 text-sm leading-relaxed text-muted">
+              Flow reads 5 hormones passively from menstrual fluid — no blood draw,
+              no appointment, no extra steps.
+            </p>
+          </div>
+
+          {/* Primary CTA */}
           <button
             onClick={() => navigate('/onboarding')}
-            className="mt-8 flex items-center gap-2 rounded-2xl bg-gradient-to-r from-rose to-orchid px-8 py-4 text-base font-bold text-white shadow-glow-mint transition hover:scale-105"
+            className="flex items-center gap-2 rounded-2xl bg-gradient-to-r from-rose to-orchid px-8 py-4 text-base font-bold text-white transition hover:scale-105"
           >
             Try the Demo <ArrowRight size={18} />
           </button>
+
+          {/* Scroll cue */}
           <button
-            onClick={() => engRef.current?.scrollIntoView({ behavior: 'smooth' })}
-            className="mt-6 flex flex-col items-center gap-1 text-sm text-muted transition hover:text-white"
+            onClick={() => insightRef.current?.scrollIntoView({ behavior: 'smooth' })}
+            className="flex flex-col items-center gap-1 text-xs text-muted transition hover:text-white"
           >
-            How it Works
-            <ChevronDown size={18} className="animate-bounce" />
+            What do these readings mean?
+            <ChevronDown size={16} className="animate-bounce" />
           </button>
         </div>
       </section>
 
-      {/* Engineering section */}
-      <section ref={engRef} className="relative px-5 pb-20 pt-6">
-        <h2 className="mb-2 text-center text-2xl font-bold">The system, in three layers</h2>
-        <p className="mb-8 text-center text-sm text-muted">
-          Lab-on-a-chip diagnostics, hidden inside a pad.
-        </p>
-        <div className="flex flex-col gap-4">
-          {layers.map(({ Icon, title, body, color }) => (
-            <div
-              key={title}
-              className="rounded-2xl bg-card p-5 shadow-glow"
-              style={{ boxShadow: `0 0 24px ${color}22` }}
-            >
-              <div
-                className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl"
-                style={{ backgroundColor: `${color}22` }}
-              >
-                <Icon size={24} style={{ color }} />
-              </div>
-              <h3 className="text-lg font-bold">{title}</h3>
-              <p className="mt-1 text-sm leading-relaxed text-muted">{body}</p>
-            </div>
-          ))}
-        </div>
-        <button
-          onClick={() => navigate('/onboarding')}
-          className="mx-auto mt-10 flex items-center gap-2 rounded-2xl bg-gradient-to-r from-rose to-orchid px-8 py-4 text-base font-bold text-white shadow-glow-mint transition hover:scale-105"
-        >
-          Try the Demo <ArrowRight size={18} />
-        </button>
-      </section>
+      {/* ── Screen 2: Insights ──────────────────────────────────────────── */}
+      <section ref={insightRef} className="px-5 pb-24 pt-10">
 
-      {/* Why the pad — research & science section */}
-      <section className="relative px-5 pb-24 pt-6">
-        <div className="mb-8 rounded-2xl bg-gradient-to-br from-orchid/20 to-rose/10 p-5 text-center ring-1 ring-orchid/30">
-          <p className="text-base font-bold leading-snug text-white">
-            "200 million pads are used every month.
-            <br />
-            Every one is a hormone panel going in the trash."
+        <h2 className="text-2xl font-bold text-white">What your hormones mean</h2>
+        <p className="mt-1 text-sm text-muted">Based on today's sync · Luteal phase · Day 22</p>
+
+        {/* AI interpretation */}
+        <div className="mt-5 rounded-2xl bg-card p-5">
+          <p className="mb-2 text-[10px] font-semibold uppercase tracking-widest text-muted">
+            OvaAI analysis
           </p>
-          <p className="mt-2 text-xs text-muted">The FlowSense thesis — going to the source</p>
+          <p className="text-sm leading-relaxed text-white">{aiInsight.text}</p>
         </div>
 
-        <h2 className="mb-2 text-center text-2xl font-bold">Why the pad?</h2>
-        <p className="mb-8 text-center text-sm text-muted">
-          Menstrual fluid is uniquely rich in the biomarkers that matter. A larger collection base
-          doesn't just help individual women — it accelerates research for all of them.
-        </p>
-
-        <div className="flex flex-col gap-4">
-          {researchCards.map(({ Icon, title, body, color, stat, statLabel }) => (
-            <div
-              key={title}
-              className="rounded-2xl bg-card p-5"
-              style={{ boxShadow: `0 0 24px ${color}22` }}
-            >
-              <div className="mb-3 flex items-start justify-between gap-3">
-                <div
-                  className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl"
-                  style={{ backgroundColor: `${color}22` }}
-                >
-                  <Icon size={24} style={{ color }} />
-                </div>
-                <div className="text-right">
-                  <span className="block text-2xl font-bold" style={{ color }}>{stat}</span>
-                  <span className="block text-[10px] leading-tight text-muted">{statLabel}</span>
-                </div>
-              </div>
-              <h3 className="text-lg font-bold">{title}</h3>
-              <p className="mt-1 text-sm leading-relaxed text-muted">{body}</p>
-            </div>
-          ))}
+        {/* Why menstrual fluid */}
+        <div className="mt-4 rounded-2xl bg-card p-5">
+          <p className="mb-2 text-[10px] font-semibold uppercase tracking-widest text-muted">
+            Why the pad works
+          </p>
+          <p className="text-sm leading-relaxed text-white">
+            Menstrual fluid is shed directly from the endometrium — hormone concentrations are
+            up to 10× higher than in venous blood. Flow collects this passively while you wear it.
+            Going to the source means earlier signals and richer data than any blood draw.
+          </p>
         </div>
 
-        <div className="mt-8 rounded-2xl bg-card p-5 ring-1 ring-gold/30">
-          <p className="text-sm font-bold text-gold mb-2">The research case</p>
-          <p className="text-sm leading-relaxed text-white/90">
-            Women's health has been chronically underfunded and understudied. Menstrual fluid —
-            collected passively, every cycle, from hundreds of millions of women — is the largest
-            untapped biomarker source in medicine. FlowSense doesn't just help each user understand
-            her body. With opt-in anonymized data, every cycle contributed tightens the models that
-            detect PCOS, endometriosis, hormonal imbalance, and metabolic risk for every woman who comes after.
+        {/* Research case */}
+        <div className="mt-4 rounded-2xl bg-card p-5">
+          <p className="mb-2 text-[10px] font-semibold uppercase tracking-widest text-muted">
+            The bigger picture
+          </p>
+          <p className="text-sm leading-relaxed text-white">
+            200 million pads are used every month — every one is a hormone panel going in the trash.
+            With opt-in anonymous data from our network, Flow helps detect PCOS and endometriosis
+            patterns months before symptoms escalate to a clinic visit.
           </p>
         </div>
 
         <button
           onClick={() => navigate('/onboarding')}
-          className="mx-auto mt-10 flex items-center gap-2 rounded-2xl bg-gradient-to-r from-rose to-orchid px-8 py-4 text-base font-bold text-white shadow-glow-mint transition hover:scale-105"
+          className="mx-auto mt-8 flex items-center gap-2 rounded-2xl bg-gradient-to-r from-rose to-orchid px-8 py-4 text-base font-bold text-white transition hover:scale-105"
         >
           Try the Demo <ArrowRight size={18} />
         </button>
