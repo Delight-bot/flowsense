@@ -9,6 +9,8 @@ import {
   Utensils,
   Pill,
   Sparkles,
+  Database,
+  Cpu,
 } from 'lucide-react'
 import { useApp } from '../context/AppContext.jsx'
 import {
@@ -48,15 +50,23 @@ export default function Dashboard() {
       </div>
 
       {/* Sensor status strip */}
-      <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 rounded-full bg-card px-4 py-2.5 text-xs">
+      <div className="mt-4 rounded-2xl bg-card px-4 py-3 text-xs shadow-glow">
         {connected ? (
           <>
-            <span className="flex items-center gap-1.5 font-semibold text-success">
-              <span className="h-2 w-2 animate-pulse rounded-full bg-success" />
-              Flow · Live monitoring
-            </span>
-            <span className="text-muted">Last sync: 7:14 AM</span>
-            <span className="text-muted">Reader battery: 94%</span>
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+              <span className="flex items-center gap-1.5 font-semibold text-success">
+                <span className="h-2 w-2 animate-pulse rounded-full bg-success" />
+                Flow Pad™ · NFC Active
+              </span>
+              <span className="flex items-center gap-1 text-muted">
+                <Cpu size={11} /> Serial: FS-2847
+              </span>
+              <span className="text-muted">Last sync: 7:14 AM</span>
+              <span className="text-muted">Battery: 94%</span>
+            </div>
+            <p className="mt-1.5 text-[10px] text-muted/70">
+              Wicking membrane saturated · 5-hormone panel reading in progress
+            </p>
           </>
         ) : (
           <span className="flex items-center gap-1.5 font-semibold text-gold">
@@ -177,6 +187,32 @@ export default function Dashboard() {
               {label}
             </button>
           ))}
+        </div>
+      </div>
+
+      {/* Research Network card */}
+      <div className="mt-6 mb-8 rounded-2xl bg-gradient-to-br from-orchid/20 to-card p-5 ring-1 ring-orchid/30">
+        <div className="mb-2 flex items-center gap-2 text-sm font-bold text-blush">
+          <Database size={16} /> Research Network
+        </div>
+        <p className="text-sm leading-relaxed text-white/90">
+          Your anonymized cycle data contributes to the FlowSense Research Network — building the
+          world's first longitudinal menstrual hormone dataset. Each cycle you contribute helps
+          detect PCOS, endometriosis, and hormonal imbalance patterns earlier for every woman on the platform.
+        </p>
+        <div className="mt-3 grid grid-cols-3 gap-2 text-center">
+          <div className="rounded-xl bg-bg/50 px-2 py-2.5">
+            <p className="text-lg font-bold text-gold">3</p>
+            <p className="text-[10px] leading-tight text-muted">Cycles contributed</p>
+          </div>
+          <div className="rounded-xl bg-bg/50 px-2 py-2.5">
+            <p className="text-lg font-bold text-gold">47k+</p>
+            <p className="text-[10px] leading-tight text-muted">Network members</p>
+          </div>
+          <div className="rounded-xl bg-bg/50 px-2 py-2.5">
+            <p className="text-sm font-bold text-success">Opt-in</p>
+            <p className="text-[10px] leading-tight text-muted">HIPAA safe</p>
+          </div>
         </div>
       </div>
     </div>

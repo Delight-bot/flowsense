@@ -18,6 +18,19 @@ export default function Wicking() {
         The invisible microfluidic science, made visible.
       </p>
 
+      {/* Why menstrual fluid banner */}
+      <div className="mt-4 rounded-2xl bg-gradient-to-r from-orchid/20 to-rose/10 p-4 ring-1 ring-orchid/30">
+        <p className="mb-1.5 text-xs font-bold uppercase tracking-wide text-blush">
+          Why Menstrual Fluid?
+        </p>
+        <p className="text-sm leading-relaxed text-white/90">
+          Menstrual fluid is shed directly from the endometrium — the most hormonally active
+          tissue in the body. Hormone concentrations are up to 10× higher than in venous blood,
+          and the sample is collected passively while the pad is worn. Going to the source means
+          earlier signals, richer data, and real-world research at population scale.
+        </p>
+      </div>
+
       {/* Current strip status, animated cross section */}
       <div className="mt-6 rounded-2xl bg-card p-4 shadow-glow">
         <h2 className="mb-3 text-sm font-bold uppercase tracking-wide text-muted">
